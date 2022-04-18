@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -16,8 +17,15 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Long id;
+
     @Column(nullable = false, unique = true)
     private String model_name;
+
 //    @Column(nullable = false) - Дерьмо навязанное разработчиком
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "brand")
     private CarBrand brand;
+
+//    @OneToMany(mappedBy = "model",fetch = FetchType.LAZY)
+//    private Set<Model> car_list;
 }

@@ -19,5 +19,6 @@ public class CarBrand {
     private Long id;
     @Column(nullable = false, unique = true)
     private String car_brand_name;
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
     private Set<Model> model;
 }
